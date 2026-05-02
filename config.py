@@ -2,7 +2,7 @@
 import os
 from dotenv import load_dotenv
 
-# loading url and key from .env
+# load url and key from .env
 load_dotenv()
 
 API_URL = os.getenv("API_URL")
