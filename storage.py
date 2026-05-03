@@ -5,5 +5,5 @@ raw_data = []
 working_data = []
 # data considered clean
 clean_data = []
-# remaining invalid data
-invalid_data = []
+# incomplete data
+incomplete_data = []

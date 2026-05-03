@@ -1,7 +1,7 @@
 # imports
 from api_client import retrieve_raw_data
-from storage import raw_data, working_data, clean_data, invalid_data
-from processor import save_raw, normalise_field_names, clean_all_records
+from storage import raw_data, working_data, clean_data, incomplete_data
+from processor import save_raw, normalise_field_names, clean_all_records, split_records
 from pprint import pprint
 
 
@@ -19,13 +19,25 @@ else:
 
 # normalise data field names
 working_data = normalise_field_names(working_data)
-
-# test
-pprint(f" THIS IS THE WORKING DATA {working_data}")
-
-
 # clean records in working_data
 working_data = clean_all_records(working_data)
 
 # test
-pprint(f" THIS IS THE CLEANED WORKING DATA {working_data}")
+for record in working_data:
+    print(record)
+
+# validate and split data 
+valid, invalid = split_records(working_data)
+
+# add valid data to clean data list
+clean_data.extend(valid)
+# add invalid data to incomplete data list
+incomplete_data.extend(invalid)
+
+for record in clean_data:
+    print(f"valid_data: {record}")
+
+for record in incomplete_data:
+    print(f"invalid_data: {record}")
+
+
