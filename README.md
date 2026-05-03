@@ -79,3 +79,4 @@ With no information on which fields may be optional, the decision was made that 
 
 - **To improve** the data handling and storage, the current implementation should be modified to avoid relying on static json files for providing the API endpoints with access to the data. The reconfiguration would have better implemented memory storage alternatives for exclusive management of data in memory, or it could include a database in which data may be stored for improved effectiveness and security. 
 
+- **To improve** consistency and usability of data sharing through API endpoints, responses should be wrapped in a standard API response structure instead of being returned in a basic, unstructured format.
