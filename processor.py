@@ -1,11 +1,12 @@
 # imports
 import re
+import json
 import phonenumbers
 from datetime import datetime
 from titlecase import titlecase
 from collections import defaultdict
 
-from storage import raw_data, working_data, clean_data, incomplete_data
+from storage import raw_data
 
 
 # save raw data function
@@ -308,3 +309,27 @@ def split_records(records):
         invalid.extend(dup_invalid)
     # returning valid and invalid lists
     return valid, invalid
+
+
+
+# write clean data to json file
+def save_valid(valid):
+    with open("clean.json", "w") as f:
+        json.dump(valid, f)
+
+# write invalid data to json file
+def save_invalid(invalid):
+    with open("invalid.json", "w") as f:
+        json.dump(invalid, f)
+
+# fetch clean data function
+def get_cleaned():
+    # open and return data from file
+    with open("clean.json", "r") as f:
+        return json.load(f)
+
+# fetch invalid data function
+def get_invalid():
+    # open and return data from file
+    with open("invalid.json", "r") as f:
+        return json.load(f)

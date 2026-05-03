@@ -3,7 +3,3 @@
 raw_data = []
 # data to clean
 working_data = []
-# data considered clean
-clean_data = []
-# incomplete data
-incomplete_data = []
