@@ -74,7 +74,7 @@ def clean_name(value: str) -> str:
         return None
     # keep as string, remove whitespace from ends, and make lowercase
     value = str(value).strip().lower()
-    # collapse multiple spaces inside name
+    # collapse spaces inside name if more than one are present
     value = re.sub(r"\s+", " ", value)
     # return value with title case
     return titlecase(value)
@@ -119,7 +119,7 @@ def clean_date(date_str: str) -> str:
     # normalise separators
     date_str = date_str.replace(".", "/").replace("-", "/")
     # convert to iso format if possible
-    for fmt in ("%d/%m/%Y", "%Y/%m/%d", "%Y/%d/%m", "%m/%d/%Y"):
+    for fmt in ("%d/%m/%Y", "%Y/%m/%d", "%m/%d/%Y"):
         try:
             return datetime.strptime(date_str, fmt).date().isoformat()
         # continue if unable to parse
@@ -171,14 +171,11 @@ def clean_all_records(records: list[dict]) -> list[dict]:
 def is_missing(value) -> bool:
     # true if no value
     if value is None:
-        print(f"{value} is_missing TRUE")
         return True
     # true if value is blank
     elif isinstance(value, str) and value.strip() == "":
-        print(f"{value} is_missing TRUE")
         return True
     # return false if value is not missing
-    print(f"{value} is_missing FALSE")
     return False
 
 # verify if value is missing in dictionary function
@@ -192,11 +189,9 @@ EMAIL_REGEX = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
 def validate_email_address(email: str) -> bool:
     # return true if email follows regex structure
     if isinstance(email, str) and re.match(EMAIL_REGEX, email) is not None:
-        print(f"VALID EMAIL, {email}")
         return True
     # return false if email doesn't follow regex structure
     else:
-        print(f"INVALID EMAIL, '{email}'")
         return False
 
 # phone structure
@@ -205,11 +200,9 @@ PHONE_REGEX = r"^\+?\d{10,15}$"
 def validate_phone(phone: str, region="GB") -> bool:
     # return true if phone number follows regex structure
     if isinstance(phone, str) and re.match(PHONE_REGEX, phone) is not None:
-        print(f"VALID PHONE {phone}")
         return True
     # return false if phone number doesn't follow regex structure
     else:
-        print(f"INVALID PHONE {phone}")
         return False
     
 # validate date function
@@ -217,16 +210,13 @@ def validate_date(date_value: str) -> bool:
     # return true if date is confirmed iso format
     try:
         datetime.fromisoformat(date_value)
-        print(f"VALID DATE {date_value}")
         return True
     # return false if date confirmation fails
     except:
-        print(f"INVALID DATE {date_value}")
         return False
     
 # check if boolean function
 def validate_activity(activity: bool) -> bool:
-    print(f"activity : {activity}")
     # return true if boolean or false if not
     return isinstance(activity, bool)
 
@@ -283,10 +273,9 @@ def validate_record(record: dict) -> dict:
         validate_activity(record.get("active"))
     ]
     # check if validation returns any false values
-    print(validation_results)
-    print()
     if False in validation_results:
         return False
+    # check if validation returns all true values
     elif all(validation_results):
         return True
 

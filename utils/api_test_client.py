@@ -20,10 +20,10 @@ def get_invalid_records():
 # print data to verify retrieval
 def print_data():
     # clean data
-    print("\n=== CLEANED RECORDS ===")
+    print("\nCLEANED RECORDS")
     print(json.dumps(get_cleaned_records(), indent=2))
     # invalid data
-    print("\n=== INVALID RECORDS ===")
+    print("\nINVALID RECORDS")
     print(json.dumps(get_invalid_records(), indent=2))
 
 # run only when executed directly
