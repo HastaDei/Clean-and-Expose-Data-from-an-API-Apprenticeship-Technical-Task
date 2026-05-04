@@ -73,10 +73,16 @@ The current implementation attempts to clean messy field names but fails to enfo
 - **The assumption** made for validating records is that no field in any record should have missing or misconfigured values. \
 With no information on which fields may be optional, the decision was made that only records with all 8 correctly structured values present would be considered clean. Records missing any of the required 8 fields are classified as invalid to meet task requirements.
 
+### <ins>Server API</ins>
+
+- **The assumption** made for the API endpoints for this particular task is that return data would be best presented in its simplest form. As a result, the API response structure is not wrapped, however, it is defined using a Pydantic data model.
+
+- **To improve** consistency and usability of data sharing through API endpoints, responses could be wrapped in a standard API response structure instead of being returned in a basic format.
+
 ### <ins>Global Improvements</ins>
 
-- **To improve** the ability to run the project, the application startup initialisation could be refined and reconfigured to automatically run the API and data processing pipeline. The implementation would have a startup initialisation step that runs the data pipeline before exposing the API.
+- **To improve** the execution process of the project, the application startup initialisation could be refined and reconfigured to automatically run the API and data processing pipeline. The implementation would have a startup initialisation step that runs the data pipeline before exposing the API.
 
-- **To improve** the data handling and storage, the current implementation should be modified to avoid relying on static json files for providing the API endpoints with access to the data. The reconfiguration would have better implemented memory storage alternatives for exclusive management of data in memory, or it could include a database in which data may be stored for improved effectiveness and security. 
+- **To improve** the data handling and storage, the current implementation should be modified to avoid relying on JSON files for providing the API endpoints with access to the data. The reconfiguration would have better implemented memory storage alternatives for exclusive management of data in memory, or it could include a database in which data may be stored for improved effectiveness and security. 
 
-- **To improve** consistency and usability of data sharing through API endpoints, responses should be wrapped in a standard API response structure instead of being returned in a basic, unstructured format.
+- **To improve** the robustness of the program, a more structured error handling strategy should be introduced. The system would benefit from more advanced error handling, including standardised error responses, clearer client feedback, and better handling of server-side failures.

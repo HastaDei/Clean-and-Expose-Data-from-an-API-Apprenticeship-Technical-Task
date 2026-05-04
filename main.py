@@ -14,7 +14,7 @@ def run_main_pipeline():
     # extract list from raw data
     if isinstance(raw_data, list) and len(raw_data) > 0:
         working_data = raw_data[0].get("data", [])
-    # make data 
+    # return blank list if data extraction fails
     else:
         working_data = []
     
